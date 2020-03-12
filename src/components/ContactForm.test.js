@@ -1,7 +1,29 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import ContactForm from "./ContactForm";
 
-test("Render Contact Form", () => {
+// TEST: Show max field error for first name if > 3
+
+test("Renders contact form without crashing", () => {
     render(<ContactForm/>);
 });
+
+test("Form adds new users to the user list", () => {
+    const { getByLabelText, findAllByText, getByText, getByTestId } = render(<ContactForm/>);
+    const firstNameInput = getByLabelText(/first name*/i);
+    const lastNameInput = getByLabelText(/last name*/i);
+    const emailInput = getByLabelText(/email*/i);
+    const messageInput = getByLabelText(/message*/i);
+
+    fireEvent.change(firstNameInput, { target: { name: "firstname", value: "Jay"}});
+    fireEvent.change(lastNameInput, { target: { name: "lastname", value: "Polk"}});
+    fireEvent.change(emailInput, { target: { name: "email", value: "jay@jay.com"}});
+    fireEvent.change(messageInput, { target: { name: "message", value: "Blah"}});
+
+    const submitButton = getByTestId(/submit/i);
+
+    fireEvent.click(submitButton);
+
+    findAllByText(/Jay/i);
+})
+
