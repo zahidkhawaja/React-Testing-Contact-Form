@@ -2,8 +2,6 @@ import React from "react";
 import { render, fireEvent, findAllByText } from "@testing-library/react";
 import ContactForm from "./ContactForm";
 
-// TEST: Show max field error for first name if > 3
-
 test("Renders contact form without crashing", () => {
     render(<ContactForm/>);
 });
