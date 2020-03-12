@@ -17,7 +17,7 @@ test("Form adds new users to the user list", () => {
 
     fireEvent.change(firstNameInput, { target: { name: "firstname", value: "Jay"}});
     fireEvent.change(lastNameInput, { target: { name: "lastname", value: "Polk"}});
-    fireEvent.change(emailInput, { target: { name: "email", value: "jay@jay.com"}});
+    fireEvent.change(emailInput, { target: { name: "email", value: "swag@swag.com"}});
     fireEvent.change(messageInput, { target: { name: "message", value: "Blah"}});
 
     const submitButton = getByTestId(/submit/i);
