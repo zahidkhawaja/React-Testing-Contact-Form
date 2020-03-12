@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, findAllByText } from "@testing-library/react";
 import ContactForm from "./ContactForm";
 
 // TEST: Show max field error for first name if > 3
@@ -25,5 +25,12 @@ test("Form adds new users to the user list", () => {
     fireEvent.click(submitButton);
 
     findAllByText(/Jay/i);
+})
+
+test("Show error if required field is missing when submitting", () => {
+    const { getByTestId } = render(<ContactForm/>);
+    const submitButton = getByTestId(/submit/i);
+    fireEvent.click(submitButton);
+    findAllByText(/looks like there was an error/i);
 })
 
